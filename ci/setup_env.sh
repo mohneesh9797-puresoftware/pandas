@@ -107,9 +107,9 @@ if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
    $ISSUDO conda install botocore;
    $ISSUDO conda install python-dateutil=2.8.0;
    $ISSUDO conda install pytz;
-   $ISSUDO chmod -R 777 $MINICONDA_DIR;
    echo "conda env create -q --file=${ENV_FILE}"
    time $ISSUDO conda env create -q --file="${ENV_FILE}"
+   $ISSUDO chmod -R 777 $MINICONDA_DIR;
    $ISSUDO rm /usr/bin/lsb_release;
 else
    time $ISSUDO conda env create -q --file="${ENV_FILE}";
