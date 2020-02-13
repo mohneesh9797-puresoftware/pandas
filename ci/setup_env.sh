@@ -127,7 +127,7 @@ echo
 echo "remove any installed pandas package"
 echo "w/o removing anything else"
 conda remove pandas -y --force || true
-$SUDO pip uninstall -y pandas || true
+pip uninstall -y pandas || true
 
 echo
 echo "remove postgres if has been installed with conda"
@@ -141,12 +141,12 @@ conda remove qt -y --force || true
 
 echo
 echo "conda list pandas"
-conda list pandas
+$ISSUDO conda list pandas
 
 # Make sure any error below is reported as such
 
 echo "[Build extensions]"
-$SUDO python setup.py build_ext -q -i -j2
+python setup.py build_ext -q -i -j2
 
 # XXX: Some of our environments end up with old versions of pip (10.x)
 # Adding a new enough version of pip to the requirements explodes the
@@ -155,10 +155,9 @@ $SUDO python setup.py build_ext -q -i -j2
 # - py35_compat
 # - py36_32bit
 echo "[Updating pip]"
-$SUDO python -m pip install --no-deps -U pip wheel setuptools
-
+python -m pip install --no-deps -U pip wheel setuptools
 echo "[Install pandas]"
-$SUDO python -m pip install --no-build-isolation -e .
+python -m pip install --no-build-isolation -e .
 
 echo
 echo "conda list"
