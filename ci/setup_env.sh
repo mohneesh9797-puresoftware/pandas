@@ -146,7 +146,8 @@ $ISSUDO conda list pandas
 # Make sure any error below is reported as such
 
 echo "[Build extensions]"
-$ISSUDO python setup.py build_ext -q -i -j2
+$ISSUDO chmod -R 777 /home/travis/.ccache
+python setup.py build_ext -q -i -j2
 
 # XXX: Some of our environments end up with old versions of pip (10.x)
 # Adding a new enough version of pip to the requirements explodes the
@@ -155,9 +156,9 @@ $ISSUDO python setup.py build_ext -q -i -j2
 # - py35_compat
 # - py36_32bit
 echo "[Updating pip]"
-python -m pip install --no-deps -U pip wheel setuptools
+python -m pip install --no-deps --user pip wheel setuptools
 echo "[Install pandas]"
-python -m pip install --no-build-isolation -e .
+python -m pip install --no-build-isolation --user -e .
 
 echo
 echo "conda list"
