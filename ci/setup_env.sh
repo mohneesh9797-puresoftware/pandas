@@ -12,7 +12,7 @@ if [[ "$(uname)" == "Linux" && -n "$LC_ALL" ]]; then
     echo
 fi
 
-MINICONDA_DIR="$HOME/miniconda3"
+MINICONDA_DIR="$HOME/miniconda"
 
 
 if [ -d "$MINICONDA_DIR" ]; then
@@ -36,10 +36,17 @@ else
   exit 1
 fi
 
-wget -q "https://repo.continuum.io/miniconda/Miniconda3-latest-$CONDA_OS.sh" -O miniconda.sh
-chmod +x miniconda.sh
-./miniconda.sh -b
-
+if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
+           export ISSUDO=sudo;
+           wget -q "https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh" -O archiconda.sh;
+           chmod +x archiconda.sh;
+           bash archiconda.sh -b -p $HOME/miniconda;
+           export PATH="$HOME/miniconda/bin:$PATH";
+           $ISSUDO cp -r $HOME/miniconda/bin/* /usr/bin/;
+        else
+           wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+           bash miniconda.sh -b -p $HOME/miniconda;  
+        fi
 export PATH=$MINICONDA_DIR/bin:$PATH
 
 echo
@@ -107,7 +114,7 @@ echo
 echo "remove any installed pandas package"
 echo "w/o removing anything else"
 conda remove pandas -y --force || true
-pip uninstall -y pandas || true
+$SUDO pip uninstall -y pandas || true
 
 echo
 echo "remove postgres if has been installed with conda"
@@ -126,7 +133,7 @@ conda list pandas
 # Make sure any error below is reported as such
 
 echo "[Build extensions]"
-python setup.py build_ext -q -i -j2
+$SUDO python setup.py build_ext -q -i -j2
 
 # XXX: Some of our environments end up with old versions of pip (10.x)
 # Adding a new enough version of pip to the requirements explodes the
@@ -135,10 +142,10 @@ python setup.py build_ext -q -i -j2
 # - py35_compat
 # - py36_32bit
 echo "[Updating pip]"
-python -m pip install --no-deps -U pip wheel setuptools
+$SUDO python -m pip install --no-deps -U pip wheel setuptools
 
 echo "[Install pandas]"
-python -m pip install --no-build-isolation -e .
+$SUDO python -m pip install --no-build-isolation -e .
 
 echo
 echo "conda list"
