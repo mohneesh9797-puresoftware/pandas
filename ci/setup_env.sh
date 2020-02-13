@@ -12,7 +12,7 @@ if [[ "$(uname)" == "Linux" && -n "$LC_ALL" ]]; then
     echo
 fi
 
-MINICONDA_DIR="$HOME/miniconda"
+MINICONDA_DIR="$HOME/miniconda3"
 
 
 if [ -d "$MINICONDA_DIR" ]; then
