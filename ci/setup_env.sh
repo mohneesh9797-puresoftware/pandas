@@ -99,7 +99,7 @@ conda remove --all -q -y -n pandas-dev
 
 echo
 echo "conda env create -q --file=${ENV_FILE}"
-time conda env create -q --file="${ENV_FILE}"
+time $ISSUDO conda env create -q --file="${ENV_FILE}"
 
 
 if [[ "$BITS32" == "yes" ]]; then
