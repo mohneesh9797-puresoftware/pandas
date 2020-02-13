@@ -40,12 +40,12 @@ if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
            export ISSUDO=sudo;
            wget -q "https://github.com/Archiconda/build-tools/releases/download/0.2.3/Archiconda3-0.2.3-Linux-aarch64.sh" -O archiconda.sh;
            chmod +x archiconda.sh;
-           bash archiconda.sh -b -p $HOME/miniconda;
+           bash archiconda.sh -b -p $HOME/miniconda3;
            export PATH="$HOME/miniconda/bin:$PATH";
            $ISSUDO cp -r $HOME/miniconda/bin/* /usr/bin/;
         else
            wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-           bash miniconda.sh -b -p $HOME/miniconda;  
+           bash miniconda.sh -b -p $HOME/miniconda3;  
         fi
 export PATH=$MINICONDA_DIR/bin:$PATH
 
