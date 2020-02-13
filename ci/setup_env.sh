@@ -109,8 +109,8 @@ if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
    $ISSUDO conda install pytz;
    echo "conda env create -q --file=${ENV_FILE}"
    $ISSUDO chmod -R 777 $MINICONDA_DIR;
+   $ISSUDO rm /usr/bin/lsb_release;
    time $ISSUDO conda env create -q --file="${ENV_FILE}"
-   
 else
    time $ISSUDO conda env create -q --file="${ENV_FILE}";
 fi
