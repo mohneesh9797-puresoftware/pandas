@@ -110,6 +110,7 @@ if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
    echo "conda env create -q --file=${ENV_FILE}"
    time $ISSUDO conda env create -q --file="${ENV_FILE}"
    $ISSUDO chmod -R 777 $MINICONDA_DIR;
+   $ISSUDO chmod -R 777 /home/travis/.cache/pip
    $ISSUDO rm /usr/bin/lsb_release;
 else
    time $ISSUDO conda env create -q --file="${ENV_FILE}";
