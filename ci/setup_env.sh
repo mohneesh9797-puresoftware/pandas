@@ -108,10 +108,9 @@ if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
    $ISSUDO conda install python-dateutil=2.8.0;
    $ISSUDO conda install pytz;
    echo "conda env create -q --file=${ENV_FILE}"
-   time $ISSUDO conda env create -q --file="${ENV_FILE}"
    $ISSUDO chmod -R 777 $MINICONDA_DIR;
-   $ISSUDO chmod -R 777 /home/travis/.cache/pip
-   $ISSUDO rm /usr/bin/lsb_release;
+   time $ISSUDO conda env create -q --file="${ENV_FILE}"
+   
 else
    time $ISSUDO conda env create -q --file="${ENV_FILE}";
 fi
