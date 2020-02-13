@@ -55,10 +55,10 @@ which conda
 
 echo
 echo "update conda"
-conda config --set ssl_verify false
-conda config --set quiet true --set always_yes true --set changeps1 false
-conda install pip  # create conda to create a historical artifact for pip & setuptools
-conda update -n base conda
+$ISSUDO conda config --set ssl_verify false
+$ISSUDO conda config --set quiet true --set always_yes true --set changeps1 false
+$ISSUDO conda install pip  # create conda to create a historical artifact for pip & setuptools
+$ISSUDO conda update -n base conda
 
 echo "conda info -a"
 conda info -a
