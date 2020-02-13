@@ -101,17 +101,15 @@ echo
 echo "conda env create -q --file=${ENV_FILE}"
 
 if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
-   
-echo;
-$IS_SUDO chmod -R 777 $MINICONDA_DIR;
-$IS_SUDO apt-get install xvfb;
-$IS_SUDO conda install botocore;
-$IS_SUDO conda install python-dateutil=2.8.0;
-$IS_SUDO conda install pytz;
-$IS_SUDO chmod -R 777 $MINICONDA_DIR;
-
-echo "conda env create -q --file=${ENV_FILE}"
-time $IS_SUDO conda env create -q --file="${ENV_FILE}"
+   echo;
+   $IS_SUDO chmod -R 777 $MINICONDA_DIR;
+   $IS_SUDO apt-get install xvfb;
+   $IS_SUDO conda install botocore;
+   $IS_SUDO conda install python-dateutil=2.8.0;
+   $IS_SUDO conda install pytz;
+   $IS_SUDO chmod -R 777 $MINICONDA_DIR;
+   echo "conda env create -q --file=${ENV_FILE}"
+   time $IS_SUDO conda env create -q --file="${ENV_FILE}"
 else
    time $ISSUDO conda env create -q --file="${ENV_FILE}";
 fi
