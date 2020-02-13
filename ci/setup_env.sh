@@ -99,9 +99,13 @@ conda remove --all -q -y -n pandas-dev
 
 echo
 echo "conda env create -q --file=${ENV_FILE}"
-time $ISSUDO conda env create -q --file="${ENV_FILE}"
 
-
+if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
+   time $ISSUDO conda create -q --file="${ENV_FILE}"
+else
+   time $ISSUDO conda env create -q --file="${ENV_FILE}";
+fi
+        
 if [[ "$BITS32" == "yes" ]]; then
     # activate 32-bit compiler
     export CONDA_BUILD=1
