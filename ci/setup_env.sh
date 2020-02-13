@@ -42,7 +42,7 @@ if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
            chmod +x archiconda.sh;
            bash archiconda.sh -b -p $HOME/miniconda;
            export PATH="$HOME/miniconda/bin:$PATH";
-           $ISSUDO cp -r $HOME/miniconda/bin/* /usr/bin/;
+
         else
            wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
            bash miniconda.sh -b -p $HOME/miniconda;  
