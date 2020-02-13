@@ -101,7 +101,7 @@ echo
 echo "conda env create -q --file=${ENV_FILE}"
 
 if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
-   time $ISSUDO conda create -q --file="${ENV_FILE}"
+   $ISSUDO conda env create -q --file="${ENV_FILE}"
 else
    time $ISSUDO conda env create -q --file="${ENV_FILE}";
 fi
