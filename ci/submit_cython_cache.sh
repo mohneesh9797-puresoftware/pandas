@@ -21,6 +21,7 @@ echo "/dev/null/ "
 
 for i in ${pyx_file_list}
 do
+        echo $i
         f=${i%.pyx}
         ls $f.{c,cpp} | tar rf  ${CACHE_File} -T -
         echo $i
