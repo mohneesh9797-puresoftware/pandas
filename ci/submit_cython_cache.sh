@@ -21,6 +21,7 @@ for i in ${pyx_file_list}
 do
         f=${i%.pyx}
         ls $f.{c,cpp} | tar rf  ${CACHE_File} -T -
+        echo $i
 done
 
 echo "Cython files in cache tar:"
