@@ -15,7 +15,7 @@ rsync -Rv $pyx_file_list $PYX_CACHE_DIR
 echo "pyx files:"
 echo $pyx_file_list
 
-tar cf ${CACHE_File} --files-from /dev/null
+#tar cf ${CACHE_File} --files-from /dev/null
 
 echo "/dev/null/ "
 
