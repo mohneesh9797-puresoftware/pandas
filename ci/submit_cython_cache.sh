@@ -23,6 +23,7 @@ for i in ${pyx_file_list}
 do
         echo $i
         f=${i%.pyx}
+        echo " $f.{c,cpp} | tar rf  ${CACHE_File} -T -"
         ls $f.{c,cpp} | tar rf  ${CACHE_File} -T -
         echo $i
 done
