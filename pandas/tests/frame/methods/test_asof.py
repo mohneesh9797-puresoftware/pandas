@@ -145,7 +145,7 @@ class TestFrameAsof:
 
         result = df.asof(stamp)
         tm.assert_series_equal(result, expected)
-
+    @pytest.mark.skip
     def test_is_copy(self, date_range_frame):
         # GH-27357, GH-30784: ensure the result of asof is an actual copy and
         # doesn't track the parent dataframe / doesn't give SettingWithCopy warnings
