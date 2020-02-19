@@ -93,8 +93,8 @@ script:
   - echo "script start"
   - echo "$JOB"
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
-      sudo pip install pytz;
-      sudo pip install dateutil;
+      pip install pytz;
+      pip install dateutil;
       sudo conda install pytest;
       pytest pandas;
     else
