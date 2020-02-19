@@ -92,10 +92,11 @@ install:
 script:
   - echo "script start"
   - echo "$JOB"
-  - source activate pandas-dev
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
-      sudo pytest pandas;
+      sudo conda install pytest;
+      pytest pandas;
     else
+      source activate pandas-dev;
       ci/run_tests.sh;
     fi
 
