@@ -80,10 +80,10 @@ install:
   - echo "install start"
   -  source activate pandas-dev
   - if [[ "${TRAVIS_CPU_ARCH}" == "arm64" ]]; then
-       ci/setup_env.sh
+       ci/setup_env.sh;
     else
-      ci/prep_cython_cache.sh
-      ci/setup_env.sh
+      ci/prep_cython_cache.sh;
+      ci/setup_env.sh;
       ci/submit_cython_cache.sh;
     fi
 
